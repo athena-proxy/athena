@@ -52,7 +52,7 @@
         <testng.version>6.8.21</testng.version>
         <mockito.version>1.9.5</mockito.version>
         <curator.version>4.0.1</curator.version>
-        <zookeeper.version>3.4.9</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
         <etrace.version>0.0.2</etrace.version>
         <netty.version>4.0.42.Final</netty.version>
         <commons-codec.version>1.10</commons-codec.version>

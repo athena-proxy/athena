@@ -1,0 +1,54 @@
+<assembly xmlns="http://maven.apache.org/POM/4.0.0"
+>
+    <id>package</id>
+    <formats>
+        <format>tar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${project.basedir}/script</directory>
+            <outputDirectory>/sbin/</outputDirectory>
+            <includes>
+                <include>before_install.sh</include>
+                <include>app_start.sh</include>
+                <include>validate-app.sh</include>
+                <include>after_install.sh</include>
+                <include>get-pid.sh</include>
+                <include>start-das.sh</include>
+                <include>stop-das.sh</include>
+                <include>global.sh</include>
+                <include>global.sh.etpl</include>
+                <include>start-script/start-das-parallel.sh</include>
+                <include>start-script/start-das-mediator.sh</include>
+                <include>start-script/start-das-serial.sh</include>
+                <include>start-script/start-das-without-supervisor.sh</include>
+                <include>start-script/start-das-global.sh</include>
+                <include>tool/dalgrep</include>
+                <include>tool/hash2pattern</include>
+            </includes>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/script</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>run.sh</include>
+                <include>start.sh</include>
+            </includes>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/lib</outputDirectory>
+            <fileMode>0444</fileMode>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>

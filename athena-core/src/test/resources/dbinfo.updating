@@ -1,0 +1,6 @@
+#group database host port role id user passwd
+  eos   eleme        10.0.0.1 3306  master 0 eleme_user npsjlvNDjOEilRZ5JZgMYg==
+  #eos   eleme        10.0.0.2 3306 slave  1 eleme_user #$@DFR
+  eos   eleme        10.0.0.2 3306  slave  2 eleme_user npsjlvNDjOEilRZ5JZgMYg==
+  eus eleme           10.0.1.1 3306 master 0 eleme_user suE6z4eji00dAp+cA/OiRQ==
+  eus eleme         10.0.1.2 3307   slave  1 eleme_user suE6z4eji00dAp+cA/OiRQ==

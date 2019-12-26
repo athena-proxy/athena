@@ -1,0 +1,121 @@
+---
+group: halo-base_halo_group
+allow:
+  - '*.*'
+---
+group: commodity-commodity_service_group
+allow:
+  - 'commodity_item.*'
+  - commodity_sku.42bd16f37f2eb9a715a77345f3fd8488
+---
+group: eos_eleme-zeus_eos_group
+allow:
+  - '*.d8eecd6aab4e33450757c3e593974dcf'
+  # 此规则将被认为无效忽略
+  - invalid_rule
+---
+group: titan-transcore_server_group
+allow:
+---
+# 此配置将被认为无效忽略
+group: ""
+allow:
+  - invalid_group
+---
+group: napos_shop-zeus_ers_group
+
+# 以下6条为加skip: true的dal group
+---
+group: skip-halo-base_halo_group
+skip: true
+allow:
+  - '*.*'
+---
+group: skip-commodity-commodity_service_group
+skip: true
+allow:
+  - 'commodity_item.*'
+  - commodity_sku.42bd16f37f2eb9a715a77345f3fd8488
+---
+group: skip-eos_eleme-zeus_eos_group
+skip: true
+allow:
+  - '*.d8eecd6aab4e33450757c3e593974dcf'
+  # 此规则将被认为无效忽略
+  - invalid_rule
+---
+group: skip-titan-transcore_server_group
+skip: true
+allow:
+---
+# 此配置将被认为无效忽略
+group: ""
+skip: true
+allow:
+  - invalid_group
+---
+group: skip-napos_shop-zeus_ers_group
+skip: true
+---
+
+# 以下6条为 skip:false 的dal group
+group: not-skip-halo-base_halo_group
+skip: false
+allow:
+  - '*.*'
+---
+group: not-skip-commodity-commodity_service_group
+skip: false
+allow:
+  - 'commodity_item.*'
+  - commodity_sku.42bd16f37f2eb9a715a77345f3fd8488
+---
+group: not-skip-eos_eleme-zeus_eos_group
+skip: false
+allow:
+  - '*.d8eecd6aab4e33450757c3e593974dcf'
+  # 此规则将被认为无效忽略
+  - invalid_rule
+---
+group: not-skip-titan-transcore_server_group
+skip: false
+allow:
+---
+# 此配置将被认为无效忽略
+group: ""
+skip: false
+allow:
+  - invalid_group
+---
+group: not-skip-napos_shop-zeus_ers_group
+skip: false
+---
+group: apollo-apollo_sos_core_group
+allow:
+  # yaml 不支持以*开头的字符串,如果确实需要*开头,则需要使用引号包裹。
+  # 单引号包裹代表原样传递,不进行任何转义。双引号包裹会进行转义。
+  # 参考链接http://yaml.org/spec/1.1/#id858081
+  - '*.*'
+---
+group: apollo_query-apollo_sos_core_group
+allow:
+  # 在当前的使用场景下,最外层包裹单引号和双引号都可以。建议包裹单引号
+  - 'tb_shipping_order_main.*'
+---
+group: apollo_query-lpd_soc_query_group
+allow:
+  - '*.562fa624caa5b596fb989fec641552d7'
+  - invalid_rule
+---
+group: apollo_misc-apollo_monitor_group
+allow:
+---
+group: ""
+allow:
+  - invalid_group
+---
+group: minos-apollo_sos_api_group
+---
+group: apollo-apollo_elemis_group
+allow:
+  - 'tb_call_delivery_req.fae9ea6ab8fe157afe565cd980520f44'

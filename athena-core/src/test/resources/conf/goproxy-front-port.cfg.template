@@ -1,0 +1,19 @@
+#org    port         dalgroup                                                attribute
+
+eos     9821         eos_main_group                                          db=eos_main_group&allow_autocommit_switch=false 
+eos     9821         eos_main_group__sub__bpm_talos_search                   db=eos_main_group&allow_autocommit_switch=false
+
+napos   9695         napos_operation-zeus_ers_group                          db=napos_group
+napos   9695         napos_shop-zeus_ers_group	                             db=napos_group			
+napos   9695         napos_goods-zeus_ers_group				                 db=napos_group
+napos   9695         napos_goods-base_search_group                           db=napos_group
+napos   9695         napos_shop-napos_es_replicator_group                    db=napos_group
+napos   9695         napos_shop-bpm_talos_search_group                       db=napos_group
+napos   9695         napos_misc-napos_miracle_misc_group                     db=napos_group
+napos   9695         napos_misc-napos_miracle_notice_group                   db=napos_group
+napos   9695         napos_misc-napos_luna_gprinter_service_group            db=napos_group
+napos   9695         napos-payservice_srv_wager_group                        db=napos_group&otherValue=1
+error   9697
+eos2    9803         eosgroup                                                
+apollo  9803         apollo_group                                            db=apollo_group
+

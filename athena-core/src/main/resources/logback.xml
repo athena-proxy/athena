@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <pattern line.separator=" #012"/>
+
+    <appender name="FILE"
+              class="me.ele.jarch.athena.util.AthenaFileAppender">
+        <file>/data/log/me.ele.arch.das.misc/athena.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>/data/log/me.ele.arch.das.misc/athena.log.%i</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>18</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>2GB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %le %logger{0}: ## %msg %ex\n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>8192</queueSize>
+        <discardingThreshold>1</discardingThreshold>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <!-- save error to another log-->
+    <appender name="ERROR_FILE"
+              class="me.ele.jarch.athena.util.AthenaFileAppender">
+        <file>/data/log/me.ele.arch.das.misc/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>/data/log/me.ele.arch.das.misc/error.log.%i</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>5</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1GB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <!-- Appid from system properties set by command line -DAPPID=me.ele.arch -->
+            <!-- reference https://logback.qos.ch/manual/layouts.html#property -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %le %logger{0}[%thread]: [%property{APPID}] ## %msg
+                %ex\n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <appender name="UNSAFE_FILE"
+              class="me.ele.jarch.athena.util.AthenaFileAppender">
+        <file>/data/log/me.ele.arch.das.misc/unsafe.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>/data/log/me.ele.arch.das.misc/unsafe.log.%i</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>5</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1GB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %le %logger{0}: ## %msg %ex\n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <!-- config init change or error -->
+    <appender name="CONFIG_FILE"
+              class="me.ele.jarch.athena.util.AthenaFileAppender">
+        <file>/data/log/me.ele.arch.das.misc/config.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>/data/log/me.ele.arch.das.misc/config.log.%i</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>5</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1GB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %le %logger{0}[%thread]: [%property{APPID}] ## %msg
+                %ex\n
+            </pattern>
+        </encoder>
+        <filter class="me.ele.jarch.athena.util.AthenaConfigLogFilter"/>
+    </appender>
+    <!-- danger sql log -->
+    <appender name="DANGER_FILE"
+              class="me.ele.jarch.athena.util.AthenaFileAppender">
+        <file>/data/log/me.ele.arch.das.misc/danger.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>/data/log/me.ele.arch.das.misc/danger.log.%i</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1GB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %le %logger{0}[%thread]: [%property{APPID}] ## %msg
+                %ex\n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <appender name="ASYNC_DANGER" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>8192</queueSize>
+        <discardingThreshold>1</discardingThreshold>
+        <appender-ref ref="DANGER_FILE"/>
+    </appender>
+
+    <appender name="ASYNC_INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>8192</queueSize>
+        <discardingThreshold>1</discardingThreshold>
+        <appender-ref ref="CONFIG_FILE"/>
+    </appender>
+
+    <appender name="SLOW_FILE"
+              class="me.ele.jarch.athena.util.AthenaFileAppender">
+        <file>/data/log/me.ele.arch.das.misc/slow.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>/data/log/me.ele.arch.das.misc/slow.log.%i</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>2</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>400MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %le %logger{0}: ## %msg %ex\n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ASYNC_SLOW" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>8192</queueSize>
+        <discardingThreshold>1</discardingThreshold>
+        <appender-ref ref="SLOW_FILE"/>
+    </appender>
+
+    <appender name="THIRD_PARTY_FILE"
+              class="me.ele.jarch.athena.util.AthenaFileAppender">
+        <file>/data/log/me.ele.arch.das.misc/thirdparty.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>/data/log/me.ele.arch.das.misc/thirdparty.log.%i</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>5</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1GB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %le %logger{0}: ## %msg %ex\n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ASYNC_THIRD_PARTY_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>8192</queueSize>
+        <discardingThreshold>1</discardingThreshold>
+        <appender-ref ref="THIRD_PARTY_FILE"/>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ASYNC_THIRD_PARTY_FILE"/>
+    </root>
+    <logger name="me.ele.jarch.athena.SQLLogFilter" level="ERROR" additivity="false">
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+    <logger name="me.ele.jarch.athena.UnsafeLog" level="ERROR" additivity="false">
+        <appender-ref ref="UNSAFE_FILE"/>
+    </logger>
+
+    <logger name="me.ele.jarch.athena.SQLLog" level="INFO" additivity="false">
+        <appender-ref ref="ASYNC"/>
+    </logger>
+
+    <logger name="me.ele.jarch.athena.detector" level="INFO" additivity="false">
+        <appender-ref ref="ASYNC_SLOW"/>
+    </logger>
+
+    <logger name="me.ele.jarch.athena.util.log.RawSQLFilterTask" level="WARN" additivity="false">
+        <appender-ref ref="ASYNC_DANGER"/>
+    </logger>
+
+    <!--- config log -->
+    <logger name="me.ele" level="INFO" additivity="false">
+        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="ASYNC_INFO"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+</configuration>

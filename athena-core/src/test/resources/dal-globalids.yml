@@ -1,0 +1,84 @@
+---
+biz_name: hongbao
+seq_name: hongbao
+generator: composed_seq
+params:
+  - user_id
+zones:
+  - zone: xg
+    seq_name_zone: hongbao_xg
+    in_use: true
+    min_seed: 97656250000000
+    min_globalid: 100000000000000000
+    max_seed: 195312499999999
+    max_globalid: 199999999999999999
+    #测试groups未配置
+    groups:
+  - zone: wg
+    seq_name_zone: hongbao_wg
+    in_use: true
+    min_seed: 292968750000000
+    min_globalid: 300000000000000000
+    max_seed: 390624999999999
+    max_globalid: 399999999999999999
+    #测试groups配置空字符串
+    groups:
+      -
+---
+biz_name: notify
+seq_name: notify
+generator: common_seq
+zones:
+  - zone: xg
+    seq_name_zone: notify_xg
+    in_use: true
+    min_seed: 0
+    min_globalid: 0
+    max_seed: 999999999999999999
+    max_globalid: 999999999999999999
+    groups:
+      - notify-notify_service_group
+  - zone: wg
+    seq_name_zone: notify_wg
+    in_use: false
+    min_seed: 100000000000000000
+    min_globalid: 100000000000000000
+    max_seed: 199999999999999999
+    max_globalid: 199999999999999999
+    groups:
+      - notify-notify_service_group
+---
+biz_name: order_id
+seq_name: eleme_order_orderid_seq
+generator: order_id
+params:
+  - user_id
+  - restaurant_id
+zones:
+  - zone: xg
+    seq_name_zone: eleme_order_orderid_seq_xg
+    in_use: true
+    min_seed: 143051147461
+    min_globalid: 1200000000000000000
+    max_seed: 357627868652
+    max_globalid: 2999999999999999999
+    groups:
+      - eleme-zeus_eps_group
+  - zone: wg
+    seq_name_zone: eleme_order_orderid_seq_wg
+    in_use: true
+    min_seed: 357627868653
+    min_globalid: 3000000000000000000
+    max_seed: 596046447753
+    max_globalid: 4999999999999999999
+    groups:
+      - eos_eleme-zeus_eos_group
+  - zone: dev
+    seq_name_zone: eleme_order_orderid_seq_dev
+    in_use: true
+    min_seed: 596046447754
+    min_globalid: 5000000000000000000
+    max_seed: 834465026855
+    max_globalid: 6999999999999999999
+    groups:
+      - eos_main_group

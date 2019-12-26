@@ -1,0 +1,294 @@
+{
+  "name": "new_eos_main_group",
+  "id": -1,
+  "status": "verified",
+  "dbType": "MYSQL",
+  "username": "new_eos_main_group_user",
+  "password": "81F5E21E35407D884A6CD4A731AEBFB6AF209E1B",
+  "autocommit": false,
+  "batchAllowed": false,
+  "offline": false,
+  "homeDbGroupName": "new_eos_eleme-zeus_eos_group",
+  "ezoneFilter": [],
+  "dbGroups": [
+    {
+      "group": "new_eos_eleme-zeus_eos_group",
+      "database": "daltestdb",
+      "host": "10.101.35.29",
+      "port": 4406,
+      "user": "root",
+      "password": "root",
+      "role": "MASTER",
+      "id": "master0",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "wg1",
+      "attributes": {
+        "dal_sequence_table": "dal_sequence",
+        "TimeZone": "UTC"
+      }
+    },
+    {
+      "group": "new_eos_eleme-zeus_eos_group",
+      "database": "daltestdb",
+      "host": "10.101.35.29",
+      "port": 4406,
+      "user": "root",
+      "password": "root",
+      "role": "SLAVE",
+      "id": "slave1",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "new_eos_eleme-zeus_eos_group1",
+      "database": "new_user_order",
+      "host": "10.101.35.29",
+      "port": 4407,
+      "user": "root",
+      "password": "root",
+      "role": "MASTER",
+      "id": "master0",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "new_eos_eleme-zeus_eos_group1",
+      "database": "new_user_order",
+      "host": "10.101.35.29",
+      "port": 4407,
+      "user": "root",
+      "password": "root",
+      "role": "SLAVE",
+      "id": "slave1",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "new_eos_eleme-zeus_eos_group2",
+      "database": "new_user_order",
+      "host": "10.101.35.29",
+      "port": 4408,
+      "user": "root",
+      "password": "root",
+      "role": "MASTER",
+      "id": "master0",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "new_eos_eleme-zeus_eos_group2",
+      "database": "new_user_order",
+      "host": "10.101.35.29",
+      "port": 4408,
+      "user": "root",
+      "password": "root",
+      "role": "SLAVE",
+      "id": "slave1",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "new_eos_eleme-zeus_eos_group3",
+      "database": "new_restaurant_order",
+      "host": "10.101.35.29",
+      "port": 4407,
+      "user": "root",
+      "password": "root",
+      "role": "MASTER",
+      "id": "master0",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "new_eos_eleme-zeus_eos_group3",
+      "database": "new_restaurant_order",
+      "host": "10.101.35.29",
+      "port": 4407,
+      "user": "root",
+      "password": "root",
+      "role": "SLAVE",
+      "id": "slave1",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "new_eos_eleme-zeus_eos_group4",
+      "database": "new_restaurant_order",
+      "host": "10.101.35.29",
+      "port": 4408,
+      "user": "root",
+      "password": "root",
+      "role": "MASTER",
+      "id": "master0",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "new_eos_eleme-zeus_eos_group4",
+      "database": "new_restaurant_order",
+      "host": "10.101.35.29",
+      "port": 4408,
+      "user": "root",
+      "password": "root",
+      "role": "SLAVE",
+      "id": "slave1",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    }
+  ],
+  "shardings": [
+    {
+      "table": "eos_mysql_task",
+      "composedKey": {
+        "column": "task_hash",
+        "seqName": "contract_task_seq",
+        "composeRules": [
+          "buyer_id",
+          "seller_id"
+        ]
+      },
+      "rules": [
+        {
+          "column": "buyer_id",
+          "dbRoutes": {
+            "eos_mysql_task_uid_[0-3]": "new_eos_eleme-zeus_eos_group1",
+            "eos_mysql_task_uid_[4-7]": "new_eos_eleme-zeus_eos_group2"
+          },
+          "hashRoutes": {
+            "eos_mysql_task_uid_0": "0-127",
+            "eos_mysql_task_uid_1": "128-255",
+            "eos_mysql_task_uid_2": "256-383",
+            "eos_mysql_task_uid_3": "384-511",
+            "eos_mysql_task_uid_4": "512-639",
+            "eos_mysql_task_uid_5": "640-767",
+            "eos_mysql_task_uid_6": "768-895",
+            "eos_mysql_task_uid_7": "896-1023"
+          }
+        },
+        {
+          "column": "seller_id",
+          "dbRoutes": {
+            "eos_mysql_task_rid_[0-3]": "new_eos_eleme-zeus_eos_group3",
+            "eos_mysql_task_rid_[4-7]": "new_eos_eleme-zeus_eos_group4"
+          },
+          "hashRoutes": {
+            "eos_mysql_task_rid_0": "0-127",
+            "eos_mysql_task_rid_1": "128-255",
+            "eos_mysql_task_rid_2": "256-383",
+            "eos_mysql_task_rid_3": "384-511",
+            "eos_mysql_task_rid_4": "512-639",
+            "eos_mysql_task_rid_5": "640-767",
+            "eos_mysql_task_rid_6": "768-895",
+            "eos_mysql_task_rid_7": "896-1023"
+          }
+        }
+      ]
+    },
+    {
+      "table": "eleme_order",
+      "composedKey": {
+        "column": "",
+        "seqName": "common_shardid_seq",
+        "composeRules": [
+          "user_id",
+          "restaurant_id"
+        ]
+      },
+      "rules": [
+        {
+          "column": "user_id",
+          "mappingRoutes": {
+            "order_id": "dal_mapping_order_id_user_id_"
+          },
+          "dbRoutes": {
+            "eleme_order_uid_[0-3]": "new_eos_eleme-zeus_eos_group1",
+            "eleme_order_uid_[4-7]": "new_eos_eleme-zeus_eos_group2"
+          },
+          "hashRoutes": {
+            "eleme_order_uid_0": "0-127",
+            "eleme_order_uid_1": "128-255",
+            "eleme_order_uid_2": "256-383",
+            "eleme_order_uid_3": "384-511",
+            "eleme_order_uid_4": "512-639",
+            "eleme_order_uid_5": "640-767",
+            "eleme_order_uid_6": "768-895",
+            "eleme_order_uid_7": "896-1023"
+          }
+        },
+        {
+          "column": "restaurant_id",
+          "mappingRoutes": {
+            "order_id": "dal_mapping_order_id_restaurant_id_"
+          },
+          "dbRoutes": {
+            "eleme_order_rid_[0-3]": "new_eos_eleme-zeus_eos_group3",
+            "eleme_order_rid_[4-7]": "new_eos_eleme-zeus_eos_group4"
+          },
+          "hashRoutes": {
+            "eleme_order_rid_0": "0-127",
+            "eleme_order_rid_1": "128-255",
+            "eleme_order_rid_2": "256-383",
+            "eleme_order_rid_3": "384-511",
+            "eleme_order_rid_4": "512-639",
+            "eleme_order_rid_5": "640-767",
+            "eleme_order_rid_6": "768-895",
+            "eleme_order_rid_7": "896-1023"
+          }
+        }
+      ]
+    }
+  ],
+  "globalIds": [
+    {
+      "generator": "contract_task_seq",
+      "params": [
+        "task_hash",
+        "buyer_id",
+        "seller_id"
+      ],
+      "idc": "dev",
+      "seqNameIdc": "contract_task_id_dev",
+      "inUse": true,
+      "minSeed": 0,
+      "minGlobalId": 0,
+      "maxSeed": 31249999999999999,
+      "maxGlobalId": 999999999999999999,
+      "bizName": "contract_task_id",
+      "seqName": "contract_task_seq",
+      "zone": {
+        "zone": "dev",
+        "seqNameIdc": "contract_task_id_dev",
+        "inUse": true,
+        "minSeed": 0,
+        "minGlobalId": 0,
+        "maxSeed": 31249999999999999,
+        "maxGlobalId": 999999999999999999
+      }
+    },
+    {
+      "generator": "common_shardid_seq",
+      "params": [
+        "routingkey"
+      ],
+      "idc": "dev",
+      "seqNameIdc": "contract_id_dev",
+      "inUse": true,
+      "minSeed": 0,
+      "minGlobalId": 0,
+      "maxSeed": 31249999999999999,
+      "maxGlobalId": 999999999999999999,
+      "bizName": "contract_id",
+      "seqName": "contract_id"
+    }
+  ]
+}

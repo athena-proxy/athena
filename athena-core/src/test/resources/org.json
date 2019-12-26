@@ -1,0 +1,9 @@
+{
+  "name": "dal",
+  "port": 6602,
+  "deploy": {
+    "me.ele.arch.das.capricorn": "wg-dal-py9-1,xg-dal-py10-2",
+    "me.ele.arch.das.misc.master": "sh-dal-c4-1,sh-dal-c6-5",
+    "Unkown": "sh-dal-c4-1,sh-dal-c6-5, Unkown"
+  }
+}

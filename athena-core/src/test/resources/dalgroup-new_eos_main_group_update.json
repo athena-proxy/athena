@@ -1,0 +1,171 @@
+{
+  "name": "new_eos_main_group",
+  "id": -1,
+  "status": "verified",
+  "dbType": "MYSQL",
+  "username": "apollo_group_user",
+  "password": "81F5E21E35407D884A6CD4A731AEBFB6AF209E1B",
+  "autocommit": false,
+  "batchAllowed": false,
+  "offline": false,
+  "homeDbGroupName": "apollo_group",
+  "ezoneFilter": [],
+  "dbGroups": [
+    {
+      "group": "apollo_group",
+      "database": "daltestdb",
+      "host": "10.101.35.29",
+      "port": 4406,
+      "user": "root",
+      "password": "root",
+      "role": "MASTER",
+      "id": "master0",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "apollo_group",
+      "database": "daltestdb",
+      "host": "10.101.35.29",
+      "port": 4406,
+      "user": "root",
+      "password": "root",
+      "role": "SLAVE",
+      "id": "slave1",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "apollo_group1",
+      "database": "apollo_sharding",
+      "host": "10.101.35.29",
+      "port": 4407,
+      "user": "root",
+      "password": "root",
+      "role": "MASTER",
+      "id": "master0",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "apollo_group1",
+      "database": "apollo_sharding",
+      "host": "10.101.35.29",
+      "port": 4407,
+      "user": "root",
+      "password": "root",
+      "role": "SLAVE",
+      "id": "slave1",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "apollo_group2",
+      "database": "apollo_sharding",
+      "host": "10.101.35.29",
+      "port": 4408,
+      "user": "root",
+      "password": "root",
+      "role": "MASTER",
+      "id": "master0",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    },
+    {
+      "group": "apollo_group2",
+      "database": "apollo_sharding",
+      "host": "10.101.35.29",
+      "port": 4408,
+      "user": "root",
+      "password": "root",
+      "role": "SLAVE",
+      "id": "slave1",
+      "allowAutocommit": false,
+      "dbType": "MYSQL",
+      "dbEzone": "unknown"
+    }
+  ],
+  "shardings": [
+    {
+      "table": "tb_shipping_order_detail",
+      "composedKey": {
+        "column": "tracking_id",
+        "seqName": "composed_seq",
+        "composeRules": [
+          "retailer_id"
+        ]
+      },
+      "rules": [
+        {
+          "column": "retailer_id",
+          "hashRoutes": {
+            "tb_shipping_order_detail_0": "0-127",
+            "tb_shipping_order_detail_1": "128-255",
+            "tb_shipping_order_detail_2": "256-383",
+            "tb_shipping_order_detail_3": "384-511",
+            "tb_shipping_order_detail_4": "512-639",
+            "tb_shipping_order_detail_5": "640-767",
+            "tb_shipping_order_detail_6": "768-895",
+            "tb_shipping_order_detail_7": "896-1023"
+          },
+          "dbRoutes": {
+            "tb_shipping_order_detail_[0-3]": "apollo_group1",
+            "tb_shipping_order_detail_[4-7]": "apollo_group2"
+          },
+          "mappingRoutes": {}
+        }
+      ]
+    },
+    {
+      "table": "tb_shipping_order",
+      "composedKey": {
+        "column": "tracking_id",
+        "seqName": "composed_seq",
+        "composeRules": [
+          "retailer_id"
+        ]
+      },
+      "rules": [
+        {
+          "column": "retailer_id",
+          "hashRoutes": {
+            "tb_shipping_order_0": "0-127",
+            "tb_shipping_order_1": "128-255",
+            "tb_shipping_order_2": "256-383",
+            "tb_shipping_order_3": "384-511",
+            "tb_shipping_order_4": "512-639",
+            "tb_shipping_order_5": "640-767",
+            "tb_shipping_order_6": "768-895",
+            "tb_shipping_order_7": "896-1023"
+          },
+          "dbRoutes": {
+            "tb_shipping_order_[0-3]": "apollo_group1",
+            "tb_shipping_order_[4-7]": "apollo_group2"
+          }
+        }
+      ]
+    }
+  ],
+  "globalIds": [
+    {
+      "generator": "composed_seq",
+      "params": [
+        "retailer_id"
+      ],
+      "idc": "dev",
+      "seqNameIdc": "shipping_dev",
+      "inUse": true,
+      "minSeed": 0,
+      "minGlobalId": 0,
+      "maxSeed": 878906249999999,
+      "maxGlobalId": 899999999999999999,
+      "bizName": "shipping",
+      "seqName": "shipping"
+    }
+  ]
+}

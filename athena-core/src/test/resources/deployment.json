@@ -1,0 +1,61 @@
+{
+  "id": "xg1_dal_group_1",
+  "dalGroupName": "dal_group",
+  "aegisUrl": "http://127.0.0.1:80",
+  "ezone": "xg1",
+  "deployMode": "RELEASE",
+  "verifyDeploy": [
+    {
+      "appid": "me.ele.arch.das.misc.master",
+      "hostnames": [
+        "xg-dal-das-1",
+        "xg-dal-das-5",
+        "xg-dal-das-10"
+      ]
+    },
+    {
+      "appid": "me.ele.arch.das.capricorn",
+      "hostnames": [
+        "xg-dal-py9-1",
+        "xg-dal-py9-5",
+        "xg-dal-py9-10"
+      ]
+    }
+  ],
+  "greyDeploy": [
+    {
+      "appid": "me.ele.arch.das.misc.master",
+      "hostnames": [
+        "xg-dal-das-1",
+        "xg-dal-das-5",
+        "xg-dal-das-10"
+      ]
+    },
+    {
+      "appid": "me.ele.arch.das.capricorn",
+      "hostnames": [
+        "xg-dal-py9-1",
+        "xg-dal-py9-5",
+        "xg-dal-py9-10"
+      ]
+    }
+  ],
+  "stableDeploy": [
+    {
+      "appid": "me.ele.arch.das.misc.master",
+      "hostnames": [
+        "xg-dal-das-1",
+        "xg-dal-das-5",
+        "xg-dal-das-10"
+      ]
+    },
+    {
+      "appid": "me.ele.arch.das.capricorn",
+      "hostnames": [
+        "xg-dal-py9-1",
+        "xg-dal-py9-5",
+        "xg-dal-py9-10"
+      ]
+    }
+  ]
+}

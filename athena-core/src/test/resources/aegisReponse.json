@@ -1,0 +1,95 @@
+{
+  "success": true,
+  "code": "OK",
+  "data": {
+    "id": "DEV_magic_test_dba_pangu_group_gz_1",
+    "version": 1,
+    "name": "magic_test_dba_pangu_group_gz",
+    "ezone": "dev",
+    "status": "VERIFY",
+    "homeDbGroupName": "magic_test_dba_pangu_group_gz",
+    "dbType": "mysql",
+    "username": "dba_pangu_user",
+    "password": "B7GHaQWuUO2wohZ1BL0l",
+    "autocommit": true,
+    "batchAllowed": false,
+    "ezoneFilter": [
+      "*.*"
+    ],
+    "org": {
+      "name": "dba_pangu",
+      "port": 6601,
+      "deploy": [
+        {
+          "appid": "me.ele.arch.das.misc",
+          "hostnames": [
+            "dev-dal-host"
+          ]
+        }
+      ]
+    },
+    "dbGroups": [
+      {
+        "group": "magic_test_dba_pangu_group_gz",
+        "id": "xg-dal-das-13_m1",
+        "dbType": "mysql",
+        "host": "xg-dal-das-13",
+        "port": "3306",
+        "database": "test_db",
+        "user": "test_user",
+        "password": "test_password",
+        "role": "master",
+        "dbEzone": "dev"
+      },
+      {
+        "group": "magic_test_dba_pangu_group_gz",
+        "id": "xg-dal-das-15_m2",
+        "dbType": "mysql",
+        "host": "xg-dal-das-15",
+        "port": "3306",
+        "database": "test_db",
+        "user": "test_user",
+        "password": "test_password",
+        "role": "master",
+        "dbEzone": "dev"
+      },
+      {
+        "group": "magic_test_dba_pangu_group_gz",
+        "id": "wg-dal-das-16_m3",
+        "dbType": "mysql",
+        "host": "wg-dal-das-16",
+        "port": "3306",
+        "database": "test_db",
+        "user": "test_user",
+        "password": "test_password",
+        "role": "master",
+        "dbEzone": "dev"
+      },
+      {
+        "group": "magic_test_dba_pangu_group_gz",
+        "id": "xg-dal-das-14_s1",
+        "dbType": "mysql",
+        "host": "xg-dal-das-14",
+        "port": "3306",
+        "database": "test_db",
+        "user": "test_user",
+        "password": "test_password",
+        "role": "slave",
+        "dbEzone": "dev"
+      },
+      {
+        "group": "magic_test_dba_pangu_group_gz",
+        "id": "wg-dal-das-17_s2",
+        "dbType": "mysql",
+        "host": "wg-dal-das-17",
+        "port": "3306",
+        "database": "test_db",
+        "user": "test_user",
+        "password": "test_password",
+        "role": "slave",
+        "dbEzone": "dev"
+      }
+    ]
+  },
+  "msg": "成功"
+}

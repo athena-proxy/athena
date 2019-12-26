@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+
+import sys
+import re
+import os
+
+athena_pattern_map = {}
+for appid in os.listdir('/data/log'):
+    if not re.match(r"^me.ele.arch.das", appid):
+        continue
+    filepath = '/data/log/' + appid + '/athena_pattern_map.log'
+    if not os.path.isfile(filepath):
+        continue
+    with open(filepath) as f:
+        for line in f:
+            try:
+                hash_pattern_pair = line.split('#', 2)
+                athena_pattern_map[hash_pattern_pair[0].strip()] = hash_pattern_pair[1].strip()
+            except IndexError:
+                print("broken pattern map line:" + line)
+
+
+def transfer(m):
+    hashcode = m.group()[-32:]
+    return m.group()[:-32] + athena_pattern_map.get(hashcode, hashcode)
+
+
+if __name__ == '__main__':
+    while 1:
+        try:
+            line = sys.stdin.readline()
+        except KeyboardInterrupt:
+            break
+        if not line:
+            break
+        sys.stdout.write(re.sub(r' => \[(/\*.*\*/)?[\w\d]+', transfer, line))
+        sys.stdout.flush()

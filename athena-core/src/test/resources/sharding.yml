@@ -1,0 +1,123 @@
+---
+group: eos_mulkeyhash__group
+table: mulkeyhash_table
+rules:
+  - column: user_id,restaurant_id
+    hash_file: sharding_hash_eleme_order_rid.yml
+    db_routes:
+      shd_eleme_order_rid[0-9]: eosgroup1010
+      shd_eleme_order_rid[10-19]: eosgroup109
+      shd_eleme_order_rid[20-29]: eosgroup108
+      shd_eleme_order_rid[30-39]: eosgroup107
+      shd_eleme_order_rid[40-49]: eosgroup106
+      shd_eleme_order_rid[50-59]: eosgroup105
+      shd_eleme_order_rid[60-69]: eosgroup104
+      shd_eleme_order_rid[70-79]: eosgroup103
+      shd_eleme_order_rid[80-89]: eosgroup102
+      shd_eleme_order_rid[90-99]: eosgroup101
+      shd_eleme_order_rid[100-109]: eosgroup100
+      shd_eleme_order_rid[110-118]: eosgroup1011
+      shd_eleme_order_rid[119]: eosgroup1012
+composed_key:
+  column: id
+  seq_name: composed_seq
+  compose_rules:
+    - user_id,restaurant_id
+---
+group: apollo_group
+table: tb_shipping_order
+rules:
+  - column: retailer_id
+    hash_file: sharding_hash_apollo_tb_shipping_order.yml
+    db_routes:
+      tb_shipping_order_[0-127]: apollo_group1
+      tb_shipping_order_[128-255]: apollo_group2
+      tb_shipping_order_[256-383]: apollo_group3
+      tb_shipping_order_[384-511]: apollo_group4
+composed_key:
+  column: tracking_id
+  seq_name: composed_seq
+  compose_rules:
+    - retailer_id
+mapping_key:
+  column: retailer_id
+  mapping_rules:
+    platform_tracking_id: tb_shipping_order_tracking_id_mapping_dal_
+---
+group: eos_main_group
+table: common_self_table
+rules:
+  - column: id
+    hash_file: sharding_hash_eleme_order_rid.yml
+    db_routes:
+      shd_eleme_order_rid[0-119]: eosgroup1010
+composed_key:
+  column: id
+  seq_name: id
+  compose_rules:
+    - id
+---
+group: new_eos_main_group
+table: eleme_order
+rules:
+  - column: user_id
+    hash_file: sharding_hash_new_eleme_order_uid.yml
+    db_routes:
+      eleme_order_uid_[0-3]: new_eos_eleme-zeus_eos_group1
+      eleme_order_uid_[4-7]: new_eos_eleme-zeus_eos_group2
+    mapping_key:
+      column: user_id
+      mapping_rules:
+        order_id: dal_mapping_order_id_user_id_
+  - column: restaurant_id
+    hash_file: sharding_hash_new_eleme_order_rid.yml
+    db_routes:
+      eleme_order_rid_[0-3]: new_eos_eleme-zeus_eos_group3
+      eleme_order_rid_[4-7]: new_eos_eleme-zeus_eos_group4
+    mapping_key:
+      column: restaurant_id
+      mapping_rules:
+        order_id: dal_mapping_order_id_restaurant_id_
+composed_key:
+  column: ""
+  seq_name: common_seq
+  compose_rules:
+    - user_id
+    - restaurant_id
+---
+group: apollo_new_group
+table: tb_shipping_order
+rules:
+  - column: retailer_id
+    hash_file: sharding_hash_apollo_tb_shipping_order.yml
+    db_routes:
+      tb_shipping_order_[0-127]: apollo_group1
+      tb_shipping_order_[128-255]: apollo_group2
+      tb_shipping_order_[256-383]: apollo_group3
+      tb_shipping_order_[384-511]: apollo_group4
+    mapping_key:
+      column: retailer_id
+      mapping_rules:
+        platform_tracking_id: tb_shipping_order_tracking_id_mapping_dal_
+composed_key:
+  column: tracking_id
+  seq_name: composed_seq
+  compose_rules:
+    - retailer_id
+mapping_key:
+  column: retailer_id
+  mapping_rules:
+    abc_id: tb_shipping_order_tracking_id_mapping_dal_
+---
+group: eos_main_group
+table: common_tow_composedkey
+rules:
+  - column: id
+    hash_file: sharding_hash_eleme_order_rid.yml
+    db_routes:
+      shd_eleme_order_rid[0-119]: eosgroup1010
+composed_key:
+  column: user_id,restaurant_id
+  seq_name: composed_seq
+  compose_rules:
+    - id

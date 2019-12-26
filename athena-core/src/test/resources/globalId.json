@@ -1,0 +1,19 @@
+{
+  "seqName": "eleme_order_orderid_seq",
+  "bizName": "order_id",
+  "generator": "order_id",
+  "params": [
+    "user_id",
+    "restaurant_id"
+  ],
+  "idc": "xg",
+  "seqNameIdc": "eleme_order_orderid_seq_xg",
+  "inUse": "true",
+  "minSeed": "143051147461",
+  "minGlobalId": "1200000000000000000",
+  "maxSeed": "357627868652",
+  "maxGlobalId": "2999999999999999999",
+  "groups": [
+    "eos_eleme-zeus_eos_group"
+  ]
+}

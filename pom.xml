@@ -54,7 +54,7 @@
         <curator.version>4.0.1</curator.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <etrace.version>0.0.2</etrace.version>
-        <netty.version>4.0.42.Final</netty.version>
+        <netty.version>4.1.42.Final</netty.version>
         <commons-codec.version>1.10</commons-codec.version>
         <commons-io.version>2.4</commons-io.version>
         <apache.httpclient.version>4.5</apache.httpclient.version>

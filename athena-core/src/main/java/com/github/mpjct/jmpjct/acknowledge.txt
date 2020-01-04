@@ -1,0 +1,9 @@
+Many thanks to the following people and organization for providing the basic project: https://github.com/MPjct/JMPjct
+
+<ul>
+    <li>kormoc</li>
+    <li>hexuallyactive</li>
+    <li>samaitra</li>
+    <li>bitdeli-chef</li>
+    <li>MPjct</li>
+<ul>

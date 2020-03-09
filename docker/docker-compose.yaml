@@ -1,0 +1,63 @@
+version: '3.7'
+services:
+  home:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=athena
+      - MYSQL_DATABASE=athena
+    command:
+      - "--default-authentication-plugin=mysql_native_password"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+      - "--transaction-isolation=READ-COMMITTED"
+      - "--default-time-zone=+08:00"
+      - "--innodb-buffer-pool-size=128M"
+    ports:
+      - 30006:3306
+    volumes:
+      - ./sql/homedb.sql:/docker-entrypoint-initdb.d/homedb.sql
+    tmpfs: /var/lib/mysql
+  shard1:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=athena
+      - MYSQL_DATABASE=athena
+    command:
+      - "--default-authentication-plugin=mysql_native_password"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+      - "--transaction-isolation=READ-COMMITTED"
+      - "--default-time-zone=+08:00"
+      - "--innodb-buffer-pool-size=128M"
+    ports:
+      - 30007:3306
+    volumes:
+      - ./sql/shard1db.sql:/docker-entrypoint-initdb.d/shard1db.sql
+    tmpfs: /var/lib/mysql
+  shard2:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=athena
+      - MYSQL_DATABASE=athena
+    command:
+      - "--default-authentication-plugin=mysql_native_password"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+      - "--transaction-isolation=READ-COMMITTED"
+      - "--default-time-zone=+08:00"
+      - "--innodb-buffer-pool-size=128M"
+    ports:
+      - 30008:3306
+    volumes:
+      - ./sql/shard2db.sql:/docker-entrypoint-initdb.d/shard2db.sql
+    tmpfs: /var/lib/mysql
+  zk:
+    image: zookeeper:3.4
+    command:
+      - "sh"
+      - "-c"
+      - "zkServer.sh start && sleep 1 && zkCli.sh < /init-zk.txt && zkServer.sh stop && zkServer.sh start-foreground"
+    ports:
+      - 30081:2181
+    volumes:
+      - ./zk/init-zk.txt:/init-zk.txt

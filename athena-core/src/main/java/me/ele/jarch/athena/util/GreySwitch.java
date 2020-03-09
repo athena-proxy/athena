@@ -29,7 +29,7 @@ public class GreySwitch {
 
     private volatile long loginSlowInMills = 100;
 
-    private volatile boolean allowDalGroupHealthCheck = true;
+    private volatile boolean allowDalGroupHealthCheck = false;
 
     private volatile boolean mhaSlaveFailedEnabed = true;
 
@@ -47,7 +47,7 @@ public class GreySwitch {
 
     private volatile boolean zkDalgroupWatcherEnabled = true;
 
-    private volatile boolean isQuerySqlLogEnabled = false;
+    private volatile boolean isQuerySqlLogEnabled = true;
 
     private volatile int healthCheckInterval = 120 * 1000;
 

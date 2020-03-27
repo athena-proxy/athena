@@ -1,0 +1,48 @@
+---
+biz_name: common_seq_example_id
+seq_name: common_seq_example_id
+generator: common_seq
+zones:
+  - zone: dev
+    seq_name_zone: common_seq_example_id_dev
+    in_use: true
+    min_seed: 0
+    min_globalid: 0
+    max_seed: 999999999999999999
+    max_globalid: 999999999999999999
+    groups:
+      - biz_group
+  - zone: az1
+    seq_name_zone: common_seq_example_id_az1
+    in_use: true
+    min_seed: 1000000000000000000
+    min_globalid: 1000000000000000000
+    max_seed: 1999999999999999999
+    max_globalid: 1999999999999999999
+    groups:
+      - biz_group
+---
+biz_name: composed_seq_example_id
+seq_name: composed_seq_example_id
+generator: composed_seq
+params:
+  - user_id
+zones:
+  - zone: dev
+    seq_name_zone: composed_seq_example_id_dev
+    in_use: true
+    min_seed: 976562500000000
+    min_globalid: 1000000000000000000
+    max_seed: 1953124999999999
+    max_globalid: 1999999999999999999
+    groups:
+      - biz_group
+  - zone: az1
+    seq_name_zone: composed_seq_example_id_az1
+    in_use: true
+    min_seed: 0
+    min_globalid: 0
+    max_seed: 976562499999999
+    max_globalid: 999999999999999999
+    groups:
+      - biz_group

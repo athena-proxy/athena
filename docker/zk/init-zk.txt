@@ -1,0 +1,5 @@
+create /dal ""
+create /dal/athena ""
+create /dal/athena/dev ""
+create /dal/athena/dev/groups ""
+sync /dal/athena/dev/groups

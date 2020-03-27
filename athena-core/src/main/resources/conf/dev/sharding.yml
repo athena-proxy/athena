@@ -1,0 +1,14 @@
+---
+group: biz_group
+table: biz_tbl
+rules:
+  - column: biz_id
+    hash_file: sharding_hash_biz_id.yml
+    db_routes:
+      biz_tbl_[0-3]: shard1_group
+      biz_tbl_[4-7]: shard2_group
+composed_key:
+  column: biz_id
+  seq_name: common_seq
+  compose_rules:
+    - biz_id

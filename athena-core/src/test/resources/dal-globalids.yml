@@ -2,7 +2,7 @@
 biz_name: hongbao
 seq_name: hongbao
 generator: composed_seq
-param:
+params:
   - user_id
 zones:
   - zone: xg

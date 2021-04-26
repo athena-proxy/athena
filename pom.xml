@@ -56,7 +56,7 @@
         <etrace.version>0.0.2</etrace.version>
         <netty.version>4.0.42.Final</netty.version>
         <commons-codec.version>1.10</commons-codec.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <apache.httpclient.version>4.5</apache.httpclient.version>
         <apache.httpasyncclient.version>4.1.4</apache.httpasyncclient.version>
         <snakeyaml.version>1.15</snakeyaml.version>
